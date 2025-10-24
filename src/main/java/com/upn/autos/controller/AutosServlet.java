@@ -19,11 +19,30 @@ public class AutosServlet extends HttpServlet {
     private final AutoDao dao = new AutoDaoImpl();
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        // Verificar si hay una acción de eliminar
+        String action = request.getParameter("action");
+
+        if ("eliminar".equals(action)) {
+            String idStr = request.getParameter("id");
+            if (idStr != null && !idStr.isEmpty()) {
+                try {
+                    int id = Integer.parseInt(idStr);
+                    dao.eliminar(id);
+                } catch (NumberFormatException e) {
+                    // Si el ID no es válido, simplemente ignora el error
+                }
+                response.sendRedirect("autos");
+                return;
+            }
+        }
+
+        // Listar todos los autos (código original)
         List<Auto> lista = dao.listar();
         request.setAttribute("listarAutos", lista);
         request.getRequestDispatcher("autos.jsp").forward(request, response);
-
     }
     
     @Override

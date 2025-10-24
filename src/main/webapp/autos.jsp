@@ -26,7 +26,8 @@
                     <th>Marca</th>
                     <th>Modelo</th>
                     <th>Año</th>
-                    <th>Precio</th>
+                    <th>Precio ($)</th>
+                    <th>Acciones</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -37,6 +38,13 @@
                         <td>${a.modelo}</td>
                         <td>${a.anio}</td>
                         <td>$${a.precio}</td>
+                        <td>
+                            <a href="autos?action=eliminar&id=${a.id}"
+                               class="btn btn-danger btn-sm"
+                               onclick="return confirm('¿Estás seguro de eliminar este auto?')">
+                                Eliminar
+                            </a>
+                        </td>
                     </tr>
                 </c:forEach>
                 </tbody>

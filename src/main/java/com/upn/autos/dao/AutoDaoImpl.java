@@ -62,4 +62,16 @@ public class AutoDaoImpl implements AutoDao {
             log.error(e.getMessage());
         }
     }
+
+    @Override
+    public void eliminar(int id) {
+        String sql = "DELETE FROM auto WHERE id = ?";
+        try (Connection con = obtenerConexion();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setInt(1, id);
+            ps.executeUpdate();
+        } catch (Exception e) {
+            log.error(e.getMessage());
+        }
+    }
 }

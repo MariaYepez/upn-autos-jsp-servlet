@@ -23,7 +23,7 @@
             <input type="number" id="anio" name="anio" class="form-control" min="1950" required>
         </div>
         <div class="mb-3">
-            <label class="form-label">Precio</label>
+            <label class="form-label">Precio($)</label>
             <input type="number" name="precio" step="0.01" min="0" class="form-control" required>
         </div>
         <div class="text-center">
